@@ -129,11 +129,11 @@ void	mnist_print_image(t_mnist *mnist, size_t index)
 	}
 }
 
-int	main(int argc, char **argv)
-{
-	(void)argc;
-	t_mnist *mnist = NULL;
+//int	main(int argc, char **argv)
+//{
+//	(void)argc;
+//	t_mnist *mnist = NULL;
 
-	mnist = mnist_load(argv[1], argv[2]);
-	mnist_print_image(mnist, 0);
-}
+//	mnist = mnist_load(argv[1], argv[2]);
+//	mnist_print_image(mnist, 10);
+//}
