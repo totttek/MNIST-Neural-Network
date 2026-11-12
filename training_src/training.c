@@ -154,7 +154,7 @@ int	main(int argc, char **argv)
 	if(!trainer)
 		return (model_free(model), mnist_free(testset), mnist_free(dataset), -1);
 
-	printf("Run Stats: seed - %u, epochs - %d, lr - %.2f\n", seed, epochs, lr);
+	printf("Run Stats: seed - %u, epochs - %d, lr - %f\n", seed, epochs, lr);
 	if (train_model(trainer, dataset, testset, epochs, lr) != 0)
 		return (trainer_free(trainer), model_free(model), mnist_free(testset), mnist_free(dataset), -1);
 	if (argc == 6)
