@@ -142,14 +142,16 @@ int	main(int argc, char **argv)
 	model = model_create((size_t[]){784, 128, 10}, 3);
 	if (!model)
 		return (mnist_free(testset), mnist_free(dataset), -1);
+	model_apply_activation(model, 0, ACT_SIGMOID);
+	model_apply_activation(model, 1, ACT_SOFTMAX);
 	
 	model_init_random(model);
 
-	trainer = trainer_create(model);
+	trainer = trainer_create(model, LOSS_CROSS_ENTROPY);
 	if(!trainer)
 		return (model_free(model), mnist_free(testset), mnist_free(dataset), -1);
 
-	if (train_model(trainer, dataset, testset, 5, 0.1) != 0)
+	if (train_model(trainer, dataset, testset, 10, 0.05) != 0)
 		return (trainer_free(trainer), model_free(model), mnist_free(testset), mnist_free(dataset), -1);
 	if (argc == 6)
 		model_save(model, argv[5]);
