@@ -126,8 +126,11 @@ int	main(int argc, char **argv)
 	t_mnist		*testset = NULL;
 	t_model		*model = NULL;
 	t_trainer	*trainer = NULL;
+	unsigned int	seed = 1234567890;
+	int				epochs = 10;
+	double			lr = 0.05;
 
-	srand(1234567890);
+	srand(seed);
 	if (argc != 5 && argc != 6)
 	{
 		printf("Usage: ./trainer <dataset-images> <dataset-lables> <testset-images> <dataset-lables> [model filename]");
@@ -144,14 +147,15 @@ int	main(int argc, char **argv)
 		return (mnist_free(testset), mnist_free(dataset), -1);
 	model_apply_activation(model, 0, ACT_SIGMOID);
 	model_apply_activation(model, 1, ACT_SOFTMAX);
-	
+
 	model_init_random(model);
 
 	trainer = trainer_create(model, LOSS_CROSS_ENTROPY);
 	if(!trainer)
 		return (model_free(model), mnist_free(testset), mnist_free(dataset), -1);
 
-	if (train_model(trainer, dataset, testset, 10, 0.05) != 0)
+	printf("Run Stats: seed - %u, epochs - %d, lr - %.2f\n", seed, epochs, lr);
+	if (train_model(trainer, dataset, testset, epochs, lr) != 0)
 		return (trainer_free(trainer), model_free(model), mnist_free(testset), mnist_free(dataset), -1);
 	if (argc == 6)
 		model_save(model, argv[5]);
