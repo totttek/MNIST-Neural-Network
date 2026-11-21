@@ -1,3 +1,3 @@
 [submodule "libmodel"]
 	path = libmodel
-	url = git@github.com:totttek/libmodel.git
+	url = https://github.com/totttek/libmodel.git
