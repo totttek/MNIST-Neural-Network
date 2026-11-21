@@ -1,4 +1,4 @@
-# MNISTAI
+# MNIST Neural Network
 
 A handwritten digit classifier trained from scratch in C, on the MNIST dataset, using my own neural network library [libmodel](https://github.com/totttek/libmodel) (included as a submodule). No ML frameworks: the IDX loader, the training loop, backpropagation, softmax and cross-entropy are all plain C.
 
